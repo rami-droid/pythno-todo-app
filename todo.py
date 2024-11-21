@@ -1,22 +1,13 @@
-import sys
+from tkinter import *
 
-from PyQt5.QtWidgets import QApplication, QLabel, QWidget, QPushButton
-from PyQt5.QtCore import pyqtSlot
-
-app = QApplication([])
-
-@pyqtSlot()
-def on_click():
-    print("Hellor World")
-
-window = QWidget()
-window.setWindowTitle("PyQt App")
-window.setGeometry(750, 300, 500, 500)
-helloMsg = QLabel("<h1>Todo App</h1>", parent=window)
-helloMsg.move(60, 15)
-button = QPushButton(text="button", parent=window)
+def on_button_click():
+    print("button clicked!")
 
 
-window.show()
+root = Tk()
 
-sys.exit(app.exec())
+button = Button(root, text="click me", command=on_button_click)
+
+button.pack(padx=20, pady=20)
+
+root.mainloop()
