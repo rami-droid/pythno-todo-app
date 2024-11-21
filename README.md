@@ -2,9 +2,9 @@
 A To-Do List application built with Python and tkinter.
 This app allows you to manage tasks through buttons and menus.
 
-## Features (all WIP)
+## Features
 **Add Tasks:** Use a simple input field and button to add tasks.</br>
 **View Tasks:** Tasks are displayed in a neatly formatted list widget.</br>
-**Delete Tasks:** Remove selected tasks with a single click.</br>
-**Clear All:** Wipe your task list with a dedicated button.</br>
-**Persistence:** saves tasks to a file for easy retrieval.</br>
+**Delete Tasks (wip):**  Remove selected tasks with a single click.</br>
+**Clear All (wip):** Wipe your task list with a dedicated button.</br>
+**Persistence (wip):** saves tasks to a csvfile for easy retrieval.</br>
