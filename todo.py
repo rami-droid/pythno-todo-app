@@ -1,14 +1,18 @@
+from customtkinter import *
+
 from tkinter import *
+
+
 
 def KBDaddToList(e):
     addTodo()
 
 class todo:
     def __init__(self, parent, todoText) -> None:
-        self.frame = Frame(parent)
-        self.label = Label(self.frame, text=todoText, width=40, anchor="w")
+        self.frame = CTkFrame(master=parent)
+        self.label = CTkLabel(self.frame, text=todoText, width=40, anchor="w")
         self.text = todoText
-        self.deleteBtn = Button(self.frame, text="delete", command=self.delete)
+        self.deleteBtn = CTkButton(self.frame, text="delete", command=self.delete)
 
 
         self.label.pack(side=LEFT, padx=5, pady=5)
@@ -39,28 +43,28 @@ def on_delete_click():
 todos = []
 
 #define main window
-root = Tk()
+root = CTk()
 root.title = "todo app"
-root.minsize(500, 500)
+root.geometry("500x400")
 
 #add to list button
-button = Button(root, text="add to list", command=addTodo)
+button = CTkButton(root, text="add to list", command=addTodo)
 root.bind('<Return>', KBDaddToList)
 
-buttonFrame = Frame()
+buttonFrame = CTkFrame(master=root)
 
-exitBtn = Button(root,  text="exit", command=root.destroy)
+exitBtn = CTkButton(root,  text="exit", command=root.destroy)
 
-todoEntry = Entry(root)
+todoEntry = CTkEntry(root)
 
 
 #output for todo list
-displayFrame = Frame()
+displayFrame = CTkScrollableFrame(master=root)
 # todoText = Text(displayFrame)
 
 #pack everything in windows
-button.pack()
-exitBtn.pack()
+button.pack(padx = 2, pady = 2)
+exitBtn.pack(padx = 2, pady = 2)
 todoEntry.pack()
 displayFrame.pack()
 
