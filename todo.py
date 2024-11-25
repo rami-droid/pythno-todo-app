@@ -3,6 +3,10 @@ from tkinter import *
 def KBDaddToList(e):
     on_button_click()
 
+class todo:
+    label = Label
+    text = Text
+    deleteBtn = Button(text="delete")
 #adds input to list and sends to display
 def on_button_click():
     if todoEntry.get() != "":
