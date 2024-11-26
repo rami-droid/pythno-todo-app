@@ -31,7 +31,6 @@ class todo:
 
 def addTodo():
     todoText = todoEntry.get()
-    print(todoText)
     if todoText:
         newTodo = todo(displayFrame, todoText)
         todos.append(newTodo)
@@ -53,14 +52,13 @@ def load_todos():
             todos.append(new_todo)
             new_todo.pack()
     except FileNotFoundError:
-        print("file not found")
+        pass
     except EOFError:
-        print("corrupt or empty file")
+        pass
 
 #deletes top todo from list
 def on_delete_click():
     save_todos()
-    print("saved succesfully")
     root.destroy
 
 todos = []
