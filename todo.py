@@ -22,6 +22,7 @@ class todo:
         self.frame.pack()
 
     def delete(self):
+        todos.pop(todos.index(self.text))
         self.frame.destroy()
 
     def get_data(self):
@@ -59,7 +60,6 @@ def load_todos():
 #deletes top todo from list
 def on_delete_click():
     save_todos()
-    root.destroy
 
 todos = []
 
