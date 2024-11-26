@@ -1,7 +1,7 @@
 from customtkinter import *
 
 from tkinter import *
-
+import pickle
 
 
 def KBDaddToList(e):
@@ -23,6 +23,9 @@ class todo:
 
     def delete(self):
         self.frame.destroy()
+
+    def get_data(self):
+        return self.text
  
 
 
@@ -36,9 +39,29 @@ def addTodo():
         todoEntry.delete(0, END)
 
 
+def save_todos():
+    todo_texts = [todo.get_data() for todo in todos]
+    with open ("todos.pickle", "wb") as file:
+        pickle.dump(todo_texts, file)
+
+def load_todos():
+    try:
+        with open ("todos.pickle", "rb") as file:
+            todo_texts = pickle.load(file)
+        for text in todo_texts:
+            new_todo = todo(displayFrame, text)
+            todos.append(new_todo)
+            new_todo.pack()
+    except FileNotFoundError:
+        print("file not found")
+    except EOFError:
+        print("corrupt or empty file")
+
 #deletes top todo from list
 def on_delete_click():
-    return
+    save_todos()
+    print("saved succesfully")
+    root.destroy
 
 todos = []
 
@@ -47,13 +70,17 @@ root = CTk()
 root.title = "todo app"
 root.geometry("500x400")
 
-#add to list button
-button = CTkButton(root, text="add to list", command=addTodo)
-root.bind('<Return>', KBDaddToList)
-
 buttonFrame = CTkFrame(master=root)
 
-exitBtn = CTkButton(root,  text="exit", command=root.destroy)
+#add to list button
+button = CTkButton(buttonFrame, text="add to list", command=addTodo)
+root.bind('<Return>', KBDaddToList)
+
+
+
+exitBtn = CTkButton(buttonFrame,  text="save data", command=on_delete_click)
+
+tempBtn = CTkButton(buttonFrame, text="exit", command=root.destroy)
 
 todoEntry = CTkEntry(root)
 
@@ -61,12 +88,14 @@ todoEntry = CTkEntry(root)
 #output for todo list
 displayFrame = CTkScrollableFrame(master=root)
 # todoText = Text(displayFrame)
-
+buttonFrame.pack()
 #pack everything in windows
-button.pack(padx = 2, pady = 2)
-exitBtn.pack(padx = 2, pady = 2)
+
+button.pack(padx = 2, pady = 2, side=LEFT)
+exitBtn.pack(padx = 2, pady = 2, side=LEFT)
+tempBtn.pack(padx = 2, pady = 2, side=LEFT)
 todoEntry.pack()
 displayFrame.pack()
 
-
+load_todos()
 root.mainloop()
