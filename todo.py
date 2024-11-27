@@ -22,7 +22,7 @@ class todo:
         self.frame.pack()
 
     def delete(self):
-        todos.pop(todos.index(self.text))
+        todos.remove(self)
         self.frame.destroy()
 
     def get_data(self):
